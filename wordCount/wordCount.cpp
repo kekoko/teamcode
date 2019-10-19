@@ -53,23 +53,30 @@ void outputFile(int argc,char *argv[],int charactersNum,int wordNum,int lineNum,
 		{
 			ofstream fout;
 			fout.open(argv[i+1]);
-			fout<<"chaeacters: "<<charactersNum<<endl;
+			fout<<"characters: "<<charactersNum<<endl;
 			fout<<"words: "<<wordNum<<endl;
 			fout<<"lines: "<<lineNum<<endl;
-			for(int i=0;i<num;i++)
+			/*for(int i=0;i<num;i++)
 			{
 				fout<<s[i]<<": "<<snum[i]<<endl;
-			}
+			}*/
 			fout.close();
 			break;
 		}//输出答案到文件 
 	}
+}
+int Get_Word(string str){
+	return str.length();
+}
+int Get_Line(string str) {
+	
 }
 int main(int argc,char *argv[])
 {
 	string str=inputFile(argc,argv);
 	string s[10];
 	int sNum[10];
-	outputFile(argc,argv,40,5,2,s,sNum,10);//参数对应输出要求的各个内容 
+	int word = Get_Word(str);
+	outputFile(argc,argv,word,5,2,s,sNum,10);//参数对应输出要求的各个内容 
 	return 0;
 }
