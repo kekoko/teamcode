@@ -4,6 +4,7 @@
 #include<cstdlib>
 #include<string>
 #include<fstream>
+#include <stdio.h>
 using namespace std;
 int m=1,n=10;//若未出现-m，-n参数，默认值为1和10 
 string inputFile(int argc,char *argv[])//读取文件 
@@ -68,7 +69,7 @@ void outputFile(int argc,char *argv[],int charactersNum,int wordNum,int lineNum,
 int Get_Character(string str){
 	return str.length();
 }
-int Get_Line(string str) {
+/*int Get_Line(string str) {
 		int length=str.length();
 	    int lines=0;
 	    int sign=0;
@@ -90,6 +91,34 @@ int Get_Line(string str) {
 	    }
 	    lines=lines+1;
 	    return	lines;
+    int count=0;
+    for (int i=0;i<str.length();i++)
+    {
+        if((str[i]>=65&&str[i]<=90)||(str[i]>=97&&str[i]<=122))//当判断第i个元素为大写字母或小写字母时count自加
+        {
+            count++;
+            while(((str[i]>=65&&str[i]<=90)||(str[i]>=97&&str[i]<=122))&&str[i]!='\0')//当不是非字母元素时i自加（即将该单词快速遍历）
+            {
+                i++;
+            }
+        }
+	}
+	return count;
+    
+}*/
+int Get_Line(char file[]){
+	char c;
+	int h = 0;
+	FILE *fp;
+	fp = fopen(file,"r");
+
+	while((c=fgetc(fp))!=EOF){
+		if(c=='\n'){
+		
+				h++;
+			}
+		}
+	return h+1;
 }
 bool Word_panduan(string word){
 	int len = word.length();
@@ -127,8 +156,8 @@ int main(int argc,char *argv[])
 	string s[10];
 	int sNum[10];
 	int character = Get_Character(str);
-	int line = Get_Line(str);
+	int line = Get_Line("input.txt");
 	int word = Get_Word(str);
-	outputFile(argc,argv,character,line,word,s,sNum,10);//参数对应输出要求的各个内容 
+	outputFile(argc,argv,character,word,line,s,sNum,10);//参数对应输出要求的各个内容 
 	return 0;
 }
